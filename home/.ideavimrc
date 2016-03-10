@@ -1,0 +1,116 @@
+let mapleader = ","
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set showmode
+set history=1000
+set relativenumber
+set scrolloff=3
+
+" actions
+noremap = :action ReformatCode<CR>
+nnoremap <Leader>Tab :action VimFilePrevious<cr>
+nnoremap <Leader>p :action GotoFile<cr>
+nnoremap <Leader>b :action Switcher<cr>
+nnoremap <Leader>t :action FileStructurePopup<cr>
+nnoremap <Leader>T :action GotoSymbol<cr>
+nnoremap <Leader>a :action GotoAction<cr>
+"nnoremap <C-S-p> :action GotoClass<CR>
+
+"nnoremap K :action GotoDeclaration<CR>
+"nnoremap gK :action GotoTypeDeclaration<CR>
+"nnoremap gji :action GotoImplementation<CR>
+
+nnoremap gnb :action GotoNextBookmark<CR>
+nnoremap gne :action GotoNextError<CR>
+nnoremap gpb :action GotoPreviousBookmark<CR>
+nnoremap gep :action GotoPreviousError<CR>
+
+" code navigation
+nnoremap <c-]> :action GotoImplementation<cr>
+nnoremap <c-[> :action GotoSuperMethod<cr>
+nnoremap <scpace>u :action FindUsages<cr>
+nnoremap <scpace>gt :action GotoTest<cr>
+nnoremap <scpace>k :action HighlightUsagesInFile<cr>
+nnoremap <scpace>r :action Run<cr>
+nnoremap <scpace>d :action Debug<cr>
+nnoremap <scpace>t :action RerunTests
+
+" refactoring
+nnoremap <Leader>r :action Refactorings.QuickListPopupAction<cr>
+nnoremap <leader>g :action Generate<CR>
+
+" unimpaired mappings
+nnoremap [<space> O<esc>j
+nnoremap ]<space> o<esc>k
+nnoremap [q :action PreviousOccurence<cr>
+nnoremap ]q :action NextOccurence<cr>
+nnoremap [m :action MethodUp<cr>
+nnoremap ]m :action MethodDown<cr>
+nnoremap [c :action VcsShowPrevChangeMarker<cr>
+nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+" but preserve ideavim defaults
+nnoremap g<c-o> <c-o>
+nnoremap g<c-i> <c-i>
+
+" like ack in my vimrc
+nnoremap \ :action FindInPath<cr>
+
+" easy window navigation
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-h> <c-w>h
+nnoremap <c-k> <c-w>k
+
+" Utils
+nnoremap <silent> <C-L> :nohlsearch<CR>
+
+" Smash escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap JK <Esc>
+inoremap KJ <Esc>
+
+" File opening
+map <Leader>d :hide<CR>
+
+" Save
+nnoremap <Leader>w :w<Enter>
+
+" Force yourself to stop using arrow keys
+noremap   <Up>     <Nop>
+noremap   <Down>   <Nop>
+noremap   <Left>   <Nop>
+noremap   <Right>  <Nop>
+inoremap  <Up>     <Nop>
+inoremap  <Down>   <Nop>
+inoremap  <Left>   <Nop>
+inoremap  <Right>  <Nop>
+
+" Override defaults
+nnoremap Q <Nop>
+nnoremap <space> za
+nnoremap j gj
+nnoremap k gk
+
+" Visual line repeat
+xnoremap . :normal .<CR> 
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+ 
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+" Para siempre copiar del unnamed al * y viceversa
+set clipboard=unnamed
+
+" Emulate Vim Plugins
+" Emulate vim-sourround: ys, cs, ds, S
+set surround
