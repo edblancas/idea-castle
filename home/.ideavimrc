@@ -1,66 +1,15 @@
-let mapleader = ","
+let mapleader = "," 
 
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 set showmode
-set history=1000
+"set history=1000 "utiliza mucho cpu
 set relativenumber
 set scrolloff=3
-
-" actions
-noremap = :action ReformatCode<CR>
-nnoremap <Leader>Tab :action VimFilePrevious<cr>
-nnoremap <Leader>p :action GotoFile<cr>
-nnoremap <Leader>b :action Switcher<cr>
-nnoremap <Leader>t :action FileStructurePopup<cr>
-nnoremap <Leader>T :action GotoSymbol<cr>
-nnoremap <Leader>a :action GotoAction<cr>
-"nnoremap <C-S-p> :action GotoClass<CR>
-
-"nnoremap K :action GotoDeclaration<CR>
-"nnoremap gK :action GotoTypeDeclaration<CR>
-"nnoremap gji :action GotoImplementation<CR>
-
-nnoremap gnb :action GotoNextBookmark<CR>
-nnoremap gne :action GotoNextError<CR>
-nnoremap gpb :action GotoPreviousBookmark<CR>
-nnoremap gep :action GotoPreviousError<CR>
-
-" code navigation
-nnoremap <c-]> :action GotoImplementation<cr>
-nnoremap <c-[> :action GotoSuperMethod<cr>
-nnoremap <scpace>u :action FindUsages<cr>
-nnoremap <scpace>gt :action GotoTest<cr>
-nnoremap <scpace>k :action HighlightUsagesInFile<cr>
-nnoremap <scpace>r :action Run<cr>
-nnoremap <scpace>d :action Debug<cr>
-nnoremap <scpace>t :action RerunTests
-
-" refactoring
-nnoremap <Leader>r :action Refactorings.QuickListPopupAction<cr>
-nnoremap <leader>g :action Generate<CR>
-
-" unimpaired mappings
-nnoremap [<space> O<esc>j
-nnoremap ]<space> o<esc>k
-nnoremap [q :action PreviousOccurence<cr>
-nnoremap ]q :action NextOccurence<cr>
-nnoremap [m :action MethodUp<cr>
-nnoremap ]m :action MethodDown<cr>
-nnoremap [c :action VcsShowPrevChangeMarker<cr>
-nnoremap ]c :action VcsShowNextChangeMarker<cr>
-
-" built-in navigation to navigated items works better
-nnoremap <c-o> :action Back<cr>
-nnoremap <c-i> :action Forward<cr>
-" but preserve ideavim defaults
-nnoremap g<c-o> <c-o>
-nnoremap g<c-i> <c-i>
-
-" like ack in my vimrc
-nnoremap \ :action FindInPath<cr>
+" Para siempre copiar del unnamed al * y viceversa
+set clipboard=unnamed
 
 " easy window navigation
 nnoremap <c-l> <c-w>l
@@ -95,7 +44,7 @@ inoremap  <Right>  <Nop>
 
 " Override defaults
 nnoremap Q <Nop>
-nnoremap <space> za
+"nnoremap <space> za " not work
 nnoremap j gj
 nnoremap k gk
 
@@ -108,9 +57,31 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-" Para siempre copiar del unnamed al * y viceversa
-set clipboard=unnamed
+" Action IntelliJ IDEA {{{1
+"
+nnoremap <Space>t :action ChooseTestConfiguration<CR>
+nnoremap <Space>r :action ChooseRunConfiguration<CR>
+"nnoremap \ :action FindInPath<cr>
+" refactoring
+noremap <Leader>r :action Refactorings.QuickListPopupAction<CR>
+nnoremap <Leader>g :action Generate<CR>
 
-" Emulate Vim Plugins
-" Emulate vim-sourround: ys, cs, ds, S
-set surround
+" code navigation {{{2
+nnoremap <C-]> :action GotoImplementation<CR>
+nnoremap <C-[> :action GotoSuperMethod<CR>
+" built-in navigation to navigated items works better
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
+" but preserve ideavim defaults
+nnoremap g<C-o> <c-o>
+nnoremap g<C-i> <c-i>
+
+" unimpaired mappings
+nnoremap [<Space> O<Esc>j
+nnoremap ]<Space> o<Esc>k
+nnoremap [q :action PreviousOccurence<CR>
+nnoremap ]q :action NextOccurence<CR>
+nnoremap [m :action MethodUp<CR>
+nnoremap ]m :action MethodDown<CR>
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
