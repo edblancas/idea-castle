@@ -1,3 +1,5 @@
+" vim: fdm=marker
+
 let mapleader = "," 
 
 set incsearch
@@ -33,14 +35,14 @@ map <Leader>d :hide<CR>
 nnoremap <Leader>w :w<Enter>
 
 " Force yourself to stop using arrow keys
-noremap   <Up>     <Nop>
-noremap   <Down>   <Nop>
-noremap   <Left>   <Nop>
-noremap   <Right>  <Nop>
-inoremap  <Up>     <Nop>
-inoremap  <Down>   <Nop>
-inoremap  <Left>   <Nop>
-inoremap  <Right>  <Nop>
+"noremap   <Up>     <Nop>
+"noremap   <Down>   <Nop>
+"noremap   <Left>   <Nop>
+"noremap   <Right>  <Nop>
+"inoremap  <Up>     <Nop>
+"inoremap  <Down>   <Nop>
+"inoremap  <Left>   <Nop>
+"inoremap  <Right>  <Nop>
 
 " Override defaults
 nnoremap Q <Nop>
@@ -57,6 +59,12 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
+" Emulated Vim Plugins {{{1
+" Emulates vim-surround
+" Commands: ys, cs, ds, S
+set surround
+" }}}
+
 " Action IntelliJ IDEA {{{1
 "
 nnoremap <Space>t :action ChooseTestConfiguration<CR>
@@ -67,6 +75,7 @@ noremap <Leader>r :action Refactorings.QuickListPopupAction<CR>
 nnoremap <Leader>g :action Generate<CR>
 
 " code navigation {{{2
+"nnoremap <C-]> :action FindUsagesInFile<CR>
 nnoremap <C-]> :action GotoImplementation<CR>
 nnoremap <C-[> :action GotoSuperMethod<CR>
 " built-in navigation to navigated items works better
